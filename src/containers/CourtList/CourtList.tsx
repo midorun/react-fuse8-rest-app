@@ -1,49 +1,49 @@
-import { FC, useEffect, useState } from 'react';
-import styled from 'styled-components';
-import CourtService from '../../services/CourtService';
+import { FC } from 'react';
 import CourtItem from '../CourtItem';
 import { CourtItemType } from '../../types';
+import { ReactComponent as ChevronIcon } from '../../assets/Chevron.svg'
+import * as ST from './styles'
+import { useHistory } from 'react-router-dom';
 
-interface CourtListViewProps {
+interface CourtListProps {
   courtItems: CourtItemType[]
 }
 
-const CourtList = () => {
+const CourtList: FC<CourtListProps> = ({ courtItems }) => {
+  const history = useHistory()
 
-  const courtService = new CourtService()
-
-  const [courtItems, setCourtItems] = useState<CourtItemType[]>([])
-
-  useEffect(() => {
-    courtService.getCourtItems().then((courtItems) => setCourtItems(courtItems))
-
-  })
+  const handleCourtItemClick = (id: number) => {
+    history.push('/details/' + id)
+  }
 
   return (
-    <Wrapper>
-      <CourtListView courtItems={courtItems} />
-    </Wrapper>
+    <ST.Wrapper>
+      <CourtListView courtItems={courtItems} handleCourtItemClick={handleCourtItemClick} />
+      <ST.Button>
+        See more
+        <ChevronIcon className="icon" />
+      </ST.Button>
+    </ST.Wrapper>
   )
 }
 
-
-const CourtListView: FC<CourtListViewProps> = ({ courtItems }) => {
-
-
-  return (
-    { courtItems }
-  )
+interface CourtListViewProps extends CourtListProps {
+  handleCourtItemClick: (id: number) => void;
 }
 
-const Wrapper = styled.div`
-  margin-top: 46px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px 15px
-`
+const CourtListView: FC<CourtListViewProps> = ({ courtItems, handleCourtItemClick }) => {
 
-const Button = styled.button`
-  
-`
+  return (
+    <ST.CourtListWrapper>
+      {courtItems.map((courtItem) => (
+        <CourtItem
+          key={courtItem.id}
+          courtItem={courtItem}
+          handleCourtItemClick={handleCourtItemClick}
+        />
+      ))}
+    </ST.CourtListWrapper>
+  )
+}
 
 export default CourtList

@@ -1,89 +1,29 @@
-import React from 'react'
-import styled from 'styled-components/macro';
-import image from '../../Image.jpg';
+import { FC } from 'react'
+import image from '../../assets/Image.jpg';
+import { CourtItemType } from '../../types';
+import * as ST from './styles'
 
-type LabelProps = {
-  livingType: 'IndependentLiving' | 'SupportAvailable'
+interface CourtItemProps {
+  courtItem: CourtItemType
+  handleCourtItemClick: (id: number) => void
 }
 
-const CourtItem = () => {
+const CourtItem: FC<CourtItemProps> = ({ courtItem: { id, title, address, type, price }, handleCourtItemClick }) => {
+
   return (
-    <Wrapper>
-      <ImageWrapper>
-        <Image src={image} />
-        <Label livingType="IndependentLiving">Independent living</Label>
-      </ImageWrapper>
-      <Description>
-        <Title>Brunlees Court</Title>
-        <Address>19-23 Cambridge Road, Southport</Address>
-        <Price>New Properties for Sale from <b>£214,999</b></Price>
-        <AdditionalInfo>Shared Ownership Available</AdditionalInfo>
-      </Description>
-    </Wrapper>
+    <ST.Wrapper onClick={() => handleCourtItemClick(id)}>
+      <ST.ImageWrapper>
+        <ST.Image src={image} />
+        <ST.CourtType courtType={type}>{type}</ST.CourtType>
+      </ST.ImageWrapper>
+      <ST.Description>
+        <ST.Title>{title}</ST.Title>
+        <ST.Address>{address}</ST.Address>
+        <ST.Price>New Properties for Sale from <b>£{price}</b></ST.Price>
+        <ST.AdditionalInfo>Shared Ownership Available</ST.AdditionalInfo>
+      </ST.Description>
+    </ST.Wrapper >
   )
 }
-
-const Wrapper = styled.div`
-  width: 380px;
-  height: 380px;
-  background: #F8F8F8;
-  border: 1px solid #D8D8D8;
-
-  span:not(:first-child){
-    margin-top: 10px;
-  }
-`
-export const ImageWrapper = styled.div`
-  position: relative;
-  width: 378px;
-  height: 230px;
-`;
-
-const Image = styled.img`
-  max-width: 100%;
-  height: 230px;
-`
-
-export const Label = styled.span<LabelProps>`
-  padding: 0 10px;
-  height: 30px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  font-weight: 700;
-  font-size: 12px;
-  text-align: center;
-  background-color: ${({ livingType }) => livingType === 'IndependentLiving' ?
-    '#006F79' :
-    '#EC6608'
-  };
-`;
-
-const Description = styled.div`
-  padding: 0 20px;
-  width: 380px;
-  height: 150px;
-  display: flex;
-  flex-direction: column;
-  font-size: 16px;
-  color: #363636;
-`
-
-const Title = styled.span`
-  margin-top: 20px;
-  font-weight: 700;
-  font-size: 20px;
-`
-
-const Address = styled.span`
-`
-
-const Price = styled.span`
-
-`
-
-const AdditionalInfo = styled.span``
 
 export default CourtItem
