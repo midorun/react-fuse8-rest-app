@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/react-fuse8-test-app/static/js/main.e66f94e5.chunk.js",
+    "main.js.map": "/react-fuse8-test-app/static/js/main.e66f94e5.chunk.js.map",
+    "runtime-main.js": "/react-fuse8-test-app/static/js/runtime-main.25d9e0d0.js",
+    "runtime-main.js.map": "/react-fuse8-test-app/static/js/runtime-main.25d9e0d0.js.map",
+    "static/js/2.d7b4e5a5.chunk.js": "/react-fuse8-test-app/static/js/2.d7b4e5a5.chunk.js",
+    "static/js/2.d7b4e5a5.chunk.js.map": "/react-fuse8-test-app/static/js/2.d7b4e5a5.chunk.js.map",
+    "index.html": "/react-fuse8-test-app/index.html",
+    "static/js/2.d7b4e5a5.chunk.js.LICENSE.txt": "/react-fuse8-test-app/static/js/2.d7b4e5a5.chunk.js.LICENSE.txt",
+    "static/media/Chevron.97a27ab1.svg": "/react-fuse8-test-app/static/media/Chevron.97a27ab1.svg",
+    "static/media/Image.e68053fe.jpg": "/react-fuse8-test-app/static/media/Image.e68053fe.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.25d9e0d0.js",
+    "static/js/2.d7b4e5a5.chunk.js",
+    "static/js/main.e66f94e5.chunk.js"
+  ]
+}
